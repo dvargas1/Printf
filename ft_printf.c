@@ -6,7 +6,7 @@
 /*   By: dvargas <dvarags@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:19:13 by dvargas           #+#    #+#             */
-/*   Updated: 2022/06/13 23:14:54 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/06/13 23:48:06 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@
  *
  * va_start(ap, string a ser lida)
  * Trabalhamos o código, caso necessário utilizar outras macros.
+ * no momento de trabalhar a string precisamos chamar o macro va_args, exemplo:
+ * if 'c'
+ *	string = ft_putchar (va_args(ap, char));
+ *
  * va_end(ap) // fechando a lista de argumentos.
  * return(int); // no caso da ft_printf retornaremos um int;
  *============================================================================
