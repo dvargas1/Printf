@@ -6,9 +6,102 @@
 /*   By: dvargas <dvarags@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:19:13 by dvargas           #+#    #+#             */
-/*   Updated: 2022/06/13 23:48:06 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/06/16 10:05:58 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "stdio.h"
+#include "stdarg.h"
+
+int ft_putchar(int c);
+{
+	write(1,&c, 1);
+	return (1);
+}
+
+int ft_putstr(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+	return (1);
+}
+
+int ft_putnbr(int nb);
+{
+	ft_putstr(ft_itoa(nb);
+}
+
+int ft_putp(unsigned int i)
+{
+	
+}
+
+int ft_putu(unsigned int i)
+{
+	
+}
+
+int ft_puthex(unsigned int i)
+{
+}
+
+int treatchar(char str, va_list list)
+{
+	int i;
+
+	i = 0;
+	if (str == 'c')
+		i += ft_putchar(va_arg(list, int));
+	else if (str == 's')
+		i += ft_putstr(va_arg(list, char *));
+	else if (str == 'p')
+		i += ft_putp(va_arg(list, char *));
+	else if (str == 'd' || 'i')
+		i += ft_putnbr(va_arg(list, int));
+	else if (str == 'u')
+		i += ft_putu(va_arg(list, unsigned int));
+	else if (str == 'x')
+		i += ft_puthex(va_arg(list, unsigned int));
+	else if (str == 'X')
+		i += ft_putex2(va_arg(list, unsigned int));	
+	else if (str == '%')
+		i += ft_putchar('%');
+	else
+		return (NULL);
+	return (i);
+}
+
+int ft_printf(const char *str, ...)
+{
+	int		i;
+	int		f;
+	va_list	list;
+
+	i = 0;
+	f = 0;
+	va_start(list, str);
+	while (str[i])
+	{
+		if (str[i] == "%")
+			f += treatchar(str[i + 1], list);
+		else 
+			f+= ft_putchar (str[i]);
+		i++;
+	}
+	va_end(list);
+	return(f);
+}
+
+
+
+
+
 
 /*
  * Esse pojeto visa recriar a função printf.
@@ -60,7 +153,7 @@
  * Trabalhamos o código, caso necessário utilizar outras macros.
  * no momento de trabalhar a string precisamos chamar o macro va_args, exemplo:
  * if 'c'
- *	string = ft_putchar (va_args(ap, char));
+ *	string = ft_putchar (va_args(ap, int));
  *
  * va_end(ap) // fechando a lista de argumentos.
  * return(int); // no caso da ft_printf retornaremos um int;
@@ -79,10 +172,10 @@
  *   %s = imprime uma string == ft_putstr
  *   %p = o * Ponteiro do argumento deve ser impresso e forma hexadecimal == ???
  *   %d = imprime um numero decimal == ft_putbr?
- *	 %i = imprime um inteiro em base 10 == ft_putnbr?
- *	 %u = imprime um unsigned decimal == ft_putnbr ?
+ *	 %i = imprime um inteiro em base 10 == ft_putnbr
+ *	 %u = imprime um unsigned decimal == ft_putnbr
  *	 %x = Imprime um numero em hexadecimal (base16) em minusculo == novo putnbr?
- *	 %X = Imprime um numero em hexadecimal (base16) em maiusculo == novo putnbr?
+ *	 %X = Imprime um numero em hexadecimal (base16) em MAIUSCULO == novo putnbr?
  *	 %% = Imprime um sinal de porcentagem. == ft_putchar('%')
  * - Repira o processo ate chegar ao fim da string passada.
  * 
