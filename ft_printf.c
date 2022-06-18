@@ -6,7 +6,7 @@
 /*   By: dvargas <dvarags@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:19:13 by dvargas           #+#    #+#             */
-/*   Updated: 2022/06/16 10:05:58 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/06/18 17:32:49 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,21 @@ int ft_putp(unsigned int i)
 {
 	
 }
-
-int ft_putu(unsigned int i)
+char *ft_putu(unsigned int i)
 {
-	
+	long size;
+	char *ada;
+	size = nbsize(i);
+	ada = malloc (sizeof(char) * (size + 1));
+	if (!ada)
+		return(NULL);
+	ada[size] = '\0';
+	while (i > 0)
+	{
+		ada[size--] = 48 + (i % 10);
+		nb /= 10;
+	}
+	return (ada);
 }
 
 int ft_puthex(unsigned int i)
@@ -62,7 +73,7 @@ int treatchar(char str, va_list list)
 		i += ft_putstr(va_arg(list, char *));
 	else if (str == 'p')
 		i += ft_putp(va_arg(list, char *));
-	else if (str == 'd' || 'i')
+	else if (str == 'd' || str == 'i')
 		i += ft_putnbr(va_arg(list, int));
 	else if (str == 'u')
 		i += ft_putu(va_arg(list, unsigned int));
@@ -91,7 +102,7 @@ int ft_printf(const char *str, ...)
 		if (str[i] == "%")
 			f += treatchar(str[i + 1], list);
 		else 
-			f+= ft_putchar (str[i]);
+			f+= ft_putchar(str[i]);
 		i++;
 	}
 	va_end(list);
