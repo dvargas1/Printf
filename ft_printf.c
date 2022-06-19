@@ -6,14 +6,49 @@
 /*   By: dvargas <dvarags@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:19:13 by dvargas           #+#    #+#             */
-/*   Updated: 2022/06/18 17:32:49 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/06/19 00:45:23 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stdio.h"
 #include "stdarg.h"
+#include "stdlib.h"
 
-int ft_putchar(int c);
+static size_t	nbsize16(long nb)
+{
+	size_t	i;
+
+	i = 0;
+	if (nb == 0)
+		return(1);
+	while (nb > 0)
+	{
+		nb = nb / 16;
+		i++;
+	}
+	return (i);
+}
+
+
+static size_t	nbsize(long nb)
+{
+	size_t	i;
+
+	i = 0;
+	if (nb < 0)
+	{
+		nb *= -1;
+		i++;
+	}
+	while (nb > 0)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	return (i);
+}
+
+int ft_putchar(int c)
 {
 	write(1,&c, 1);
 	return (1);
@@ -32,16 +67,45 @@ int ft_putstr(char *str)
 	return (1);
 }
 
-int ft_putnbr(int nb);
+int ft_putnbr(int nb)
 {
-	ft_putstr(ft_itoa(nb);
+	ft_putstr(ft_itoa(nb));
+}
+
+int ft_putnbru(unsigned int nb)
+{
+	ft_putstr(ft_utoa(nb));
+}
+
+int ft_puthex(unsigned int i)
+{
+	ft_putstr(ft_hex16base(i, "123456789abcdef"));
 }
 
 int ft_putp(unsigned int i)
 {
-	
+	ft_putchar('0');
+	ft_putchar('x');
+	ft_putstr(ft_hex16base(i, "123456789abcdef"));	
 }
-char *ft_putu(unsigned int i)
+char	*ft_hex16base(unsigned int i, char *base)
+{
+	long size;
+	char *ada;
+	size = nbsize16(i);
+	ada = malloc (sizeof(char) * (size + 1));
+	if (!ada)
+		return(NULL);
+	ada[size] = '\0';
+	while (i > 0)
+	{
+		ada[size--] = base[i % 16];
+		nb /= 16;
+	}
+	return (ada);
+}
+
+char	*ft_utoa(unsigned int i)
 {
 	long size;
 	char *ada;
@@ -53,13 +117,9 @@ char *ft_putu(unsigned int i)
 	while (i > 0)
 	{
 		ada[size--] = 48 + (i % 10);
-		nb /= 10;
+		i /= 10;
 	}
 	return (ada);
-}
-
-int ft_puthex(unsigned int i)
-{
 }
 
 int treatchar(char str, va_list list)
@@ -72,19 +132,19 @@ int treatchar(char str, va_list list)
 	else if (str == 's')
 		i += ft_putstr(va_arg(list, char *));
 	else if (str == 'p')
-		i += ft_putp(va_arg(list, char *));
+		i += ft_putp(va_arg(list, unsigned int));
 	else if (str == 'd' || str == 'i')
 		i += ft_putnbr(va_arg(list, int));
 	else if (str == 'u')
-		i += ft_putu(va_arg(list, unsigned int));
+		i += ft_putnbru(va_arg(list, unsigned int));
 	else if (str == 'x')
 		i += ft_puthex(va_arg(list, unsigned int));
 	else if (str == 'X')
-		i += ft_putex2(va_arg(list, unsigned int));	
+		i += ft_puthex(va_arg(list, unsigned int));	
 	else if (str == '%')
 		i += ft_putchar('%');
 	else
-		return (NULL);
+		return (0);
 	return (i);
 }
 
@@ -99,7 +159,7 @@ int ft_printf(const char *str, ...)
 	va_start(list, str);
 	while (str[i])
 	{
-		if (str[i] == "%")
+		if (str[i] == '%')
 			f += treatchar(str[i + 1], list);
 		else 
 			f+= ft_putchar(str[i]);
@@ -109,6 +169,11 @@ int ft_printf(const char *str, ...)
 	return(f);
 }
 
+
+int main()
+{
+	ft_printf("%d", 4);
+}
 
 
 
@@ -206,3 +271,4 @@ int ft_printf(const char *str, ...)
  * '# -' (sim tem um espaço no meio)
  *
  * A printf podera ser adicionada a nossa libft ao final do projeto
+ * */
