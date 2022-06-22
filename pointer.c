@@ -6,14 +6,13 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 01:20:59 by dvargas           #+#    #+#             */
-/*   Updated: 2022/06/22 01:24:19 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/06/22 18:42:15 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-int nbsizeptr(unsigned long nb)
+int	nbsizeptr(unsigned long nb)
 {
 	size_t	i;
 
@@ -23,18 +22,18 @@ int nbsizeptr(unsigned long nb)
 		nb = nb / 16;
 		i++;
 	}
-	return(i);
+	return (i);
 }
 
 char	*ft_hexptr(unsigned long nb, char *base)
 {
-	int i;
-	char *ada;
+	int		i;
+	char	*ada;
 
 	i = nbsizeptr(nb);
 	ada = malloc (sizeof(char) * (i + 1));
 	if (!ada)
-		return(NULL);
+		return (NULL);
 	ada[i] = '\0';
 	while (nb > 0)
 	{

@@ -6,12 +6,11 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 01:24:30 by dvargas           #+#    #+#             */
-/*   Updated: 2022/06/22 01:25:43 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/06/22 18:32:59 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 int	nbsize(long nb)
 {
@@ -31,15 +30,15 @@ int	nbsize(long nb)
 	return (i);
 }
 
-
 char	*ft_utoa(unsigned int nb)
 {
-	int i;
-	char *ada;
+	int		i;
+	char	*ada;
+
 	i = nbsize(nb);
-	ada = malloc (sizeof(char) * (i + 1));
+	ada = malloc(sizeof(char) * (i + 1));
 	if (!ada)
-		return(NULL);
+		return (NULL);
 	ada[i] = '\0';
 	while (nb > 0)
 	{

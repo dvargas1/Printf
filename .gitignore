@@ -6,3 +6,5 @@ a.out
 printfTester/
 a.out
 *.out
+*.o
+*.a

@@ -6,7 +6,7 @@
 #    By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 01:39:03 by dvargas           #+#    #+#              #
-#    Updated: 2022/06/22 02:03:44 by dvargas          ###   ########.fr        #
+#    Updated: 2022/06/22 15:44:20 by dvargas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,19 +17,16 @@ SRCS	=	ft_printf.c \
 			pointer.c \
 			print.c
 OBJS		= ${SRCS:.c=.o}
-NAME		= libftprintf.a
-CC			= gcc -Wall -Wextra -Werror
+NAME		= ftprintf.a
+CC			= gcc -Wall -Wextra -Werror -I. -c
 
 %.o: %.c ft_printf.h
-			${CC} -I. -c $< -o ${<:.c=.o}
+			${CC} $< -o ${<:.c=.o}
+
+$(NAME):	${OBJS}
+			ar rcs ${NAME} ${OBJS}
 
 all:		${NAME}
-
-$(NAME):	${OBJS} ft_printf.h
-			ar rcs ${NAME} ${OBJS}
-
-bonus:		${OBJS} ft_printf.h
-			ar rcs ${NAME} ${OBJS}
 
 clean:
 			rm -f ${OBJS}

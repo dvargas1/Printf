@@ -6,21 +6,21 @@
 /*   By: dvargas <dvarags@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:19:13 by dvargas           #+#    #+#             */
-/*   Updated: 2022/06/22 02:13:42 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/06/22 18:37:24 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_putchar(int c)
+int	ft_putchar(int c)
 {
-	write(1,&c, 1);
+	write(1, &c, 1);
 	return (1);
 }
 
-int ft_putstr(char *str)
+int	ft_putstr(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str == NULL)
@@ -36,9 +36,9 @@ int ft_putstr(char *str)
 	return (i);
 }
 
-int ft_treatchar(char str, va_list list)
+int	ft_treatchar(char str, va_list list)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str == 'c')
@@ -54,7 +54,7 @@ int ft_treatchar(char str, va_list list)
 	else if (str == 'x')
 		i += ft_puthex(va_arg(list, unsigned int), "0123456789abcdef");
 	else if (str == 'X')
-		i += ft_puthex(va_arg(list, unsigned int), "0123456789ABCDEF");	
+		i += ft_puthex(va_arg(list, unsigned int), "0123456789ABCDEF");
 	else if (str == '%')
 		i += ft_putchar('%');
 	else
@@ -62,7 +62,7 @@ int ft_treatchar(char str, va_list list)
 	return (i);
 }
 
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	int		i;
 	int		f;
@@ -78,19 +78,13 @@ int ft_printf(const char *str, ...)
 			f += ft_treatchar(str[i + 1], list);
 			i++;
 		}
-		else 
-			f+= ft_putchar(str[i]);
+		else
+			f += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(list);
-	return(f);
+	return (f);
 }
-
-
-
-
-
-
 /*
  * Esse pojeto visa recriar a função printf.
  * A função printf tem como objetivo imprimir um output na saída padrão do 
@@ -117,21 +111,22 @@ int ft_printf(const char *str, ...)
  * va_list para conseguirmos ler os argumentos passados.
  *
  * va_start = void va_start(va_list ap, last-required)
- * Esse macro inicializará o ponteiro AP para o primeiro argumento, last-required
+ * Esse macro inicializará o ponteiro AP para o primeiro argumento, last-require
  * é sempre o ultimo argumento fixo que foi requisitado pela variadic function.
  * 
  * va_arg = type va_arg(va_list ap, type)
  * Esse macro retorna o valor do próximo argumento opcional e define o valor de 
  * ap para apontar para ele.
  * O tipo retornado será especificado peltype dado na chamada do macro
- * Type deve ser um valor auto-promovido(nao poderá ser char, short int ou float)
+ * Type deve ser um valor auto-promovido(nao poderá ser char, short int ou float
  *
  * va_copy = void va_copy(va_list dest, va_list src)
  * Podemos fazer umma copia de dest para src caso necessário.
  *
  * va_end = void va_end(va_list ap)
  * Esse macro termina o uso do ponteiro ap, fazendo com que futuras chamadas 
- * do macro va_args para esse mesmo ap nao funcionem, esse é o macro usado antes do retorno
+ * do macro va_args para esse mesmo ap nao funcionem, esse é o macro usado 
+ * antes do retorno
  *
  * Resumindo
  *
