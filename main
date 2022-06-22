@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dvargas <dvarags@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/18 17:24:18 by dvargas           #+#    #+#             */
+/*   Updated: 2022/06/22 01:30:45 by dvargas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+#include <stdio.h>
+int main()
+{
+	ft_printf("LINDO TESTE DA PRINTF \n");
+	char c = 'D';
+	ft_printf("Tentando imprimir caractere: %c \n", c) ;
+	ft_printf("------------------------------------ \n");
+	char *s = "Luna é Linda";
+	ft_printf("Tentando imprimir uma string %s \n", s) ;
+	ft_printf("------------------------------------ \n");
+	char *p = "lindo";
+	ft_printf("Tentando imprimir o ponteiro %p \n", p) ;
+	printf("Original é %p \n", p);
+	ft_printf("------------------------------------ \n");
+	int d = 0;
+	ft_printf("Tentando imprimir decimal %d \n", d) ;
+	ft_printf("------------------------------------ \n");
+	int i = 0;
+	ft_printf("Tentando imprimir inteiro %d  \n", i);
+	ft_printf("------------------------------------ \n");
+	unsigned int u = 0;
+	ft_printf("Tentando imprimir unsgined nbr %u  \n", u);
+	ft_printf("------------------------------------ \n");
+	int x = 0;
+	ft_printf("Tentando imprimir hexadecimal %x \n", x);
+	ft_printf("------------------------------------ \n");
+	int X = 0;
+	ft_printf("Tentando imprimir HEXADECIMAL %X \n", X);
+	ft_printf("------------------------------------ \n");
+	ft_printf("Aqui é só Porcento %%");
+}
+
