@@ -6,7 +6,7 @@
 #    By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 01:39:03 by dvargas           #+#    #+#              #
-#    Updated: 2022/06/24 10:45:29 by dvargas          ###   ########.fr        #
+#    Updated: 2022/06/25 11:02:07 by dvargas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS	=	ft_printf.c \
 			pointer.c \
 			print.c
 OBJS		= ${SRCS:.c=.o}
-NAME		= ftprintf.a
+NAME		= libftprintf.a
 CC			= cc -Wall -Wextra -Werror -I. -c
 
 %.o: %.c ft_printf.h
@@ -26,7 +26,7 @@ CC			= cc -Wall -Wextra -Werror -I. -c
 			@ echo ' '
 
 $(NAME):	${OBJS}
-			@ echo 'Update no .a'
+			@ echo 'Update no .a se necessário'
 			ar rcs ${NAME} ${OBJS}
 			@ echo ' '
 
