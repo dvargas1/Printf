@@ -1,4 +1,4 @@
-# ft_printf
+# ft_printf :pencil2:
 
 Write a library that contains **ft_printf()**, a function that will mimic the original printf()
 
